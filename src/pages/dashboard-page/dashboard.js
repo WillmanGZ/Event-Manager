@@ -1,4 +1,5 @@
 import { getUserInfo, logOut } from "../../auth/services/auth";
+import Alerts from "../../shared/alerts";
 
 const API_URL = "http://localhost:3000";
 
@@ -30,6 +31,10 @@ export function dashboardSetup() {
   addNewEventBtn.addEventListener("click", (event) => {
     event.preventDefault();
   });
+
+  //Make global those functions
+  window.editEvent = editEvent;
+  window.deleteEvent = deleteEvent;
 }
 
 async function renderEvents() {
@@ -42,8 +47,18 @@ async function renderEvents() {
   tableRows.innerHTML = "";
 
   if (events.length == 0) {
-    const noEvents = `<h2>Theres no events here</h2>`;
-    tableRows.appendChild(noEvents);
+    const noEvents = `
+        <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td>
+                <h2>No events</h2>
+            </td>
+        <td></td>
+        </tr>`;
+    tableRows.innerHTML += noEvents;
+    return;
   }
 
   events.forEach((event) => {
@@ -60,12 +75,25 @@ async function renderEvents() {
             <td><p>${event.date}</p></td>
             <td>
               <div class="actions">
-                <span>Edit</span>
-                <span>Delete</span>
+                <span onclick="(editEvent('${event.id}'))">Edit</span>
+                <span onclick="(deleteEvent('${event.id}'))">Delete</span>
               </div>
             </td>
           </tr>`;
 
     tableRows.innerHTML += newEvent;
   });
+}
+
+async function editEvent(id) {}
+async function deleteEvent(id) {
+  let request = await fetch(`${API_URL}/events/${id}`, { method: "DELETE" });
+
+  if (!request.ok) {
+    Alerts.error("Error, event cannot be deleted");
+    return;
+  }
+
+  Alerts.success("Event removed successfully");
+  renderEvents();
 }
