@@ -2,10 +2,26 @@
   "users": [
     {
       "id": "4a18",
-      "name": "asd",
-      "email": "asd@gmail.com",
-      "password": "123456789",
-      "role": "visitor"
+      "name": "Willman",
+      "email": "admin@gmail.com",
+      "password": "admin1234",
+      "role": "Admin"
+    },
+    {
+      "id": "8f6h",
+      "name": "Juan",
+      "email": "visitor@gmail.com",
+      "password": "visitor1234",
+      "role": "Visitor"
+    }
+  ],
+  "events": [
+    {
+      "id": "8f93",
+      "name": "Junior vs Millonarios",
+      "description": "Ohana significa familia",
+      "capacity": "100000",
+      "date": "15/07/2025"
     }
   ]
 }

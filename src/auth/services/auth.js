@@ -32,7 +32,12 @@ export async function login(email, password) {
 export async function register(name, email, password) {
   if (!validateNewUser(name, email, password)) return;
 
-  const newUser = { name: name, email: email, password: password, role: "visitor" };
+  const newUser = {
+    name: name,
+    email: email,
+    password: password,
+    role: "visitor",
+  };
 
   try {
     const request = await fetch(`${API_URL}/users`, {
@@ -59,6 +64,7 @@ export async function register(name, email, password) {
 
 export function logOut() {
   deleteInInLocalStorage("currentUser");
+  Alerts.info("See you next time!");
   redirectTo("/");
 }
 
@@ -86,4 +92,8 @@ function validateNewUser(name, email, password) {
   }
 
   return true;
+}
+
+export function getUserInfo(){
+  return JSON.parse(getItemInLocalStorage("currentUser"));
 }
