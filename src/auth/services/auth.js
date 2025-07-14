@@ -1,29 +1,38 @@
 import { redirectTo } from "../../routes";
+import Alerts from "../../shared/alerts";
 import {
   addItemToLocalStorage,
   getItemInLocalStorage,
   deleteInInLocalStorage,
 } from "../../shared/localstorage";
-import Alert from "/src/shared/alerts.js";
 
 const API_URL = "http://localhost:3000";
 
-export async function login(username, password) {
-  const request = await fetch(`${API_URL}/users/?username=${username}`);
-  const data = await request.json();
-
-  if (!data || data.password != password) {
-    Alert.error("Credenciales invalidas");
-    return;
+export async function login(email, password) {
+  if (!email || !password) {
+    Alerts.warning("You must complete all fields");
   }
+  try {
+    let request = await fetch(`${API_URL}/users?email=${email.toLowerCase()}`);
+    const data = await request.json();
 
-  addItemToLocalStorage("currentUser", JSON.stringify(data));
-  Alert.success(`Bienvenido/a ${data.name}`);
-  redirectTo("/dashboard");
+    if (!data || !request.ok || data[0].password != password) {
+      Alerts.error("Invalid credentials");
+      return;
+    }
+
+    addItemToLocalStorage("currentUser", JSON.stringify(data));
+    Alerts.success(`Welcome ${data[0].name}`);
+    redirectTo("/dashboard");
+  } catch (err) {
+    Alerts.error("Invalid Credentials");
+  }
 }
 
-export async function register(username, email, password) {
-  const newUser = { username: username, email: email, password: password };
+export async function register(name, email, password) {
+  if (!validateNewUser(name, email, password)) return;
+
+  const newUser = { name: name, email: email, password: password };
 
   try {
     const request = await fetch(`${API_URL}/users`, {
@@ -35,16 +44,16 @@ export async function register(username, email, password) {
     });
 
     if (!request.ok) {
-      Alert.error(
-        `Error ${request.status}, no se pudo registrar al usuario. Intentelo mas tarde`
+      Alerts.error(
+        `Error ${request.status}, user cannot be registered. Please try again later`
       );
       return;
     }
 
-    login(email, password);
-    Alert.success("El usuario se ha registrado con exito!");
+    Alerts.success("User registered successfully!");
+    redirectTo("/login");
   } catch (err) {
-    Alert.error(`No se pudo llevar a cabo el registro, Error ${err}`);
+    Alerts.error(`User cannot be registered, Error ${err}`);
   }
 }
 
@@ -56,4 +65,25 @@ export function logOut() {
 export function isLogged() {
   const userInfo = getItemInLocalStorage("currentUser");
   return !!userInfo;
+}
+
+function validateNewUser(name, email, password) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!name || name.lenght < 4) {
+    Alerts.warning("Name must have 4 or more digits");
+    return false;
+  }
+
+  if (!emailRegex.test(email)) {
+    Alerts.warning("Invalid gmail format. hello@example.com");
+    return false;
+  }
+
+  if (!password || password.lenght < 8) {
+    Alerts.warning("Password must have 8 or more digits");
+    return false;
+  }
+
+  return true;
 }

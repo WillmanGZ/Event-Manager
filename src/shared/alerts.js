@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-export class Alert {
+export default class Alerts {
   static Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -14,28 +14,28 @@ export class Alert {
   });
 
   static success(message) {
-    Alert.Toast.fire({
+    Alerts.Toast.fire({
       icon: "success",
       title: `${message}`,
     });
   }
 
   static error(message) {
-    Alert.Toast.fire({
+    Alerts.Toast.fire({
       icon: "error",
       title: `${message}`,
     });
   }
 
   static warning(message) {
-    Alert.Toast.fire({
+    Alerts.Toast.fire({
       icon: "warning",
       title: `${message}`,
     });
   }
 
   static info(message) {
-    Alert.Toast.fire({
+    Alerts.Toast.fire({
       icon: "info",
       title: `${message}`,
     });

@@ -1,12 +1,16 @@
 import { redirectTo } from "../../../routes";
+import { login } from "../../services/auth";
 
 export function loginSetup() {
   //Take DOM references
   const loginForm = document.getElementById("login-form");
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
   const goRegister = document.getElementById("go-register");
 
   loginForm.addEventListener("submit", (event) => {
     event.preventDefault();
+    login(emailInput.value.trim(), passwordInput.value);
   });
 
   goRegister.addEventListener("click", (event) => {
