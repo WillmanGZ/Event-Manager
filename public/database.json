@@ -22,6 +22,13 @@
       "description": "Ohana significa familia",
       "capacity": "100000",
       "date": "15/07/2025"
+    },
+    {
+      "id": "5f31",
+      "name": "perri",
+      "description": "el ornito crico   ",
+      "capacity": "123",
+      "date": "2025-07-11"
     }
   ]
 }

@@ -1,12 +1,12 @@
 import { renderRoute } from "../../../routes";
 import Alerts from "../../../shared/alerts";
 
-
+const API_URL = "http://localhost:3000";
 
 export async function addEvent(name, description, capacity, date) {
   const newEvent = {
     name: name,
-    description: description | "No details",
+    description: description,
     capacity: capacity,
     date: date,
   };

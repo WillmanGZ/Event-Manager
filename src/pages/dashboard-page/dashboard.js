@@ -1,5 +1,6 @@
 import { getUserInfo, logOut } from "../../auth/services/auth";
 import Alerts from "../../shared/alerts";
+import { addEvent } from "./services/events";
 
 const API_URL = "http://localhost:3000";
 
@@ -13,6 +14,7 @@ export function dashboardSetup() {
   const eventTable = document.getElementById("event-table");
   const newEventSection = document.getElementById("new-event-section");
   const cancelBtn = document.getElementById("cancel-btn");
+  const newEventBtn = document.getElementById("add-event");
 
   //Get user info
   const userInfo = getUserInfo()[0];
@@ -45,6 +47,11 @@ export function dashboardSetup() {
     eventTable.classList.toggle("hidden");
     newEventSection.classList.toggle("hidden");
     addNewEventBtn.classList.toggle("hidden");
+  });
+
+  newEventBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    addNewEvent();
   });
 
   //Make global those functions
@@ -100,7 +107,26 @@ async function renderEvents() {
   });
 }
 
+async function addNewEvent() {
+  const eventName = document.getElementById("event-name").value.trim();
+  const eventDescription = document
+    .getElementById("event-description")
+    .value;
+
+  console.log(eventDescription);
+  const eventDate = document.getElementById("event-date").value;
+  const eventCapacity = document.getElementById("event-capacity").value;
+
+  if ((!eventName, !eventDescription, !eventDate, !eventCapacity)) {
+    Alerts.warning("You must complete all fields");
+    return;
+  }
+
+  addEvent(eventName, eventDescription, eventCapacity, eventDate);
+}
+
 async function editEvent(id) {}
+
 async function deleteEvent(id) {
   let request = await fetch(`${API_URL}/events/${id}`, { method: "DELETE" });
 
