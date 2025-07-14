@@ -10,6 +10,9 @@ export function dashboardSetup() {
   const addNewEventBtn = document.getElementById("add-new-event-btn");
   const userNameText = document.getElementById("user-name");
   const userRoleText = document.getElementById("user-role");
+  const eventTable = document.getElementById("event-table");
+  const newEventSection = document.getElementById("new-event-section");
+  const cancelBtn = document.getElementById("cancel-btn");
 
   //Get user info
   const userInfo = getUserInfo()[0];
@@ -30,6 +33,18 @@ export function dashboardSetup() {
 
   addNewEventBtn.addEventListener("click", (event) => {
     event.preventDefault();
+
+    eventTable.classList.toggle("hidden");
+    newEventSection.classList.toggle("hidden");
+    addNewEventBtn.classList.toggle("hidden");
+  });
+
+  cancelBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    eventTable.classList.toggle("hidden");
+    newEventSection.classList.toggle("hidden");
+    addNewEventBtn.classList.toggle("hidden");
   });
 
   //Make global those functions

@@ -4,6 +4,7 @@
     <title>Dashboard</title>
   </head>
   <body>
+    <!--Aside bar-->
     <aside>
       <h1>Events</h1>
       <article class="user-info">
@@ -18,9 +19,11 @@
         <a href="#" id="logout-btn">Logout</a>
       </div>
     </aside>
+
+    <!--Dashboard-->
     <section class="dashboard-info">
       <a href="#" id="add-new-event-btn">ADD NEW EVENT</a>
-      <table class="event-table">
+      <table class="event-table" id="event-table">
         <thead>
           <tr>
             <th></th>
@@ -31,6 +34,7 @@
             <th></th>
           </tr>
         </thead>
+
         <tbody id="rows">
           <tr>
             <td>
@@ -52,6 +56,67 @@
           </tr>
         </tbody>
       </table>
+
+      <section class="hidden" id="new-event-section">
+        <div class="new-event-container">
+          <h1 class="new-event-title">Create Event</h1>
+
+          <form id="new-event-form">
+            <div class="form-group">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                required
+                autocomplete="name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                class="form-input"
+                required
+                autocomplete="Description"
+              >
+              </textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="date" class="form-label">Date</label>
+              <input
+                type="date"
+                id="date"
+                name="date"
+                class="form-input"
+                required
+                autocomplete="date"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="capacity" class="form-label">Capacity</label>
+              <input
+                type="number"
+                id="capacity"
+                name="capacity"
+                class="form-input"
+                required
+                autocomplete="capacity"
+              />
+            </div>
+
+            <div class="new-event-buttons">
+              <button class="cancel-button" id="cancel-btn">Cancel</button>
+              <button type="submit" class="new-event-button" id="add-event">Register</button>
+            </div>
+          </form>
+        </div>
+      </section>
     </section>
 
     <style>
@@ -226,6 +291,103 @@
         transform: scale(0.9);
       }
 
+      .new-event-title {
+        text-align: center;
+        font-size: 2rem;
+      }
+
+      .form-group {
+        margin-bottom: 2rem;
+        text-align: left;
+      }
+
+      .form-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: #b0b1b1;
+        margin-bottom: 0.6rem;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #d8d9d8;
+        border-radius: 6px;
+        font-size: 16px;
+        color: #333;
+        background-color: #fff;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: #7c3aed;
+        box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+      }
+
+      .form-input::placeholder {
+        color: #9ca3af;
+      }
+
+      .cancel-button {
+        width: 100%;
+        background-color: transparent;
+        color: #7c3aed;
+        border-color: #7c3aed;
+        border-radius: 6px;
+        padding: 1rem;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+        margin-top: 0.7rem;
+        margin-bottom: 1rem;
+      }
+
+      .cancel-button:hover {
+        background-color: #6d28d9;
+        color: white;
+      }
+
+      .cancel-button:active {
+        transform: translateY(1px);
+      }
+
+      .new-event-buttons {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+      }
+
+      .new-event-button {
+        width: 100%;
+        background-color: #7c3aed;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 1rem;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+        margin-top: 0.7rem;
+        margin-bottom: 1rem;
+      }
+
+      .new-event-button:hover {
+        background-color: #6d28d9;
+      }
+
+      .new-event-button:active {
+        transform: translateY(1px);
+      }
+
+      .hidden {
+        display: none;
+      }
+
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -246,10 +408,10 @@
         }
       }
 
-      @media (max-width: 630px){
+      @media (max-width: 630px) {
         aside .user-info img {
-            width: 56px;
-            height: 56px;
+          width: 56px;
+          height: 56px;
         }
       }
     </style>
