@@ -4,7 +4,8 @@
       "id": "4a18",
       "name": "asd",
       "email": "asd@gmail.com",
-      "password": "123456789"
+      "password": "123456789",
+      "role": "visitor"
     }
   ]
 }

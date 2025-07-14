@@ -32,7 +32,7 @@ export async function login(email, password) {
 export async function register(name, email, password) {
   if (!validateNewUser(name, email, password)) return;
 
-  const newUser = { name: name, email: email, password: password };
+  const newUser = { name: name, email: email, password: password, role: "visitor" };
 
   try {
     const request = await fetch(`${API_URL}/users`, {

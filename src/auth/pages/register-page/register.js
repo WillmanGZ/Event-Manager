@@ -1,8 +1,12 @@
 import { redirectTo } from "../../../routes";
 import Alerts from "../../../shared/alerts";
 import { register } from "../../services/auth";
+import { loginGuard } from "../../services/guards";
 
 export function registerSetup() {
+  //If user is logged, cannot be in this section
+  loginGuard();
+  
   //Take DOM references
   const registerForm = document.getElementById("register-form");
 
