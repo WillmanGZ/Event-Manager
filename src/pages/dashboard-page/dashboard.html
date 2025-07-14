@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <aside>
+      <h1>Events</h1>
+      <article class="user-info">
+        <img src="/public/images/user_icon.jpg" alt="User Image" />
+        <div class="user-text">
+          <h2>User Name</h2>
+          <p>User Role</p>
+        </div>
+      </article>
+      <div class="buttons">
+        <a href="#">Events</a>
+        <a href="#">Logout</a>
+      </div>
+    </aside>
+    <section class="dashboard-info">
+      <a href="#">ADD NEW EVENT</a>
+      <table class="event-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Capacity</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img
+                src="/public/images/event_default_img.jpg"
+                alt="Event Picture"
+              />
+            </td>
+            <td><p>Event Name</p></td>
+            <td><p>Event Description</p></td>
+            <td><p>Event Capacity</p></td>
+            <td><p>Event Date</p></td>
+            <td>
+              <div class="actions">
+                <span>Edit</span>
+                <span>Delete</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: #f8f9f9;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: row;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      aside {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        gap: 7em;
+        background-color: #efe0f3;
+        text-align: center;
+        padding-top: 1rem;
+      }
+
+      .user-info {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0.5em;
+      }
+
+      .user-info img {
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+        object-fit: contain;
+      }
+
+      .user-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1em;
+      }
+
+      .user-text p {
+        color: #d367fd;
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+      }
+
+      .buttons a {
+        width: 90%;
+        text-decoration: none;
+        padding: 1rem;
+        background-color: #6a00fe;
+        color: white;
+        border-radius: 5px;
+        transition: transform 0.1s ease-in-out;
+      }
+
+      .buttons a:last-of-type {
+        background-color: transparent;
+        color: black;
+      }
+
+      .buttons a:hover {
+        transform: scale(1.1);
+      }
+
+      .buttons a:active {
+        transform: scale(0.9);
+      }
+
+      .dashboard-info {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        align-items: right;
+        justify-content: right;
+        flex-grow: 1;
+        padding: 1rem;
+        gap: 1rem;
+      }
+
+      .dashboard-info a {
+        width: 10rem;
+        margin-left: auto;
+        text-decoration: none;
+        padding: 1rem;
+        background-color: #6a00fe;
+        color: white;
+        border-radius: 5px;
+        transition: transform 0.1s ease-in-out;
+      }
+
+      .dashboard-info a:hover {
+        transform: scale(1.1);
+      }
+
+      .dashboard-info a:active {
+        transform: scale(0.9);
+      }
+
+      .event-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        align-items: center;
+      }
+
+      .event-table th,
+      tr {
+        padding: 1rem 0;
+      }
+
+      .event-table thead {
+        background-color: transparent;
+        color: #d2d2d3;
+      }
+
+      .event-table tbody tr {
+        background-color: #ffffff;
+      }
+
+      .event-table tbody tr td img {
+        width: 64px;
+        height: 64px;
+        border-radius: 10px;
+        object-fit: cover;
+        margin: 0.5rem;
+      }
+
+      .actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+
+      .actions span {
+        padding: 1rem;
+        color: #6a00fe;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.1s ease-in-out;
+      }
+
+      .actions span:hover {
+        transform: scale(1.1);
+      }
+
+      .actions span:active {
+        transform: scale(0.9);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 1100px) {
+        aside .user-info {
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </body>
+</html>
