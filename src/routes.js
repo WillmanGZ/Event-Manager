@@ -1,33 +1,28 @@
-import { landingSetup } from "./pages/landing-page/landing.js";
 import { loginSetup } from "./auth/pages/login-page/login.js";
 import { registerSetup } from "./auth/pages/register-page/register.js";
 import { dashboardSetup } from "./pages/dashboard-page/dashboard.js";
+import { homeSetup } from "./pages/home-page/home.js";
 import { notFoundSetup } from "./pages/not-found-page/not-found.js";
 
 const routes = {
   "/": {
-    path: "/src/pages/landing-page/landing.html",
-
-    setup: landingSetup,
+    path: "/src/pages/home-page/home.html",
+    setup: homeSetup,
   },
   "/register": {
     path: "/src/auth/pages/register-page/register.html",
-
     setup: registerSetup,
   },
   "/login": {
     path: "/src/auth/pages/login-page/login.html",
-
     setup: loginSetup,
   },
   "/dashboard": {
     path: "/src/pages/dashboard-page/dashboard.html",
-
     setup: dashboardSetup,
   },
   "/notFound": {
     path: "/src/pages/not-found-page/not-found.html",
-
     setup: notFoundSetup,
   },
 };
