@@ -21,7 +21,7 @@ export async function login(email, password) {
       return;
     }
 
-    addItemToLocalStorage("currentUser", JSON.stringify(data));
+    addItemToLocalStorage("currentUser", JSON.stringify(data[0]));
     Alerts.success(`Welcome ${data[0].name}`);
     redirectTo("/dashboard");
   } catch (err) {
@@ -73,6 +73,14 @@ export function isLogged() {
   return !!userInfo;
 }
 
+export function isAdmin() {
+  return getUserInfo().role == "Admin";
+}
+
+export function getUserInfo() {
+  return JSON.parse(getItemInLocalStorage("currentUser"));
+}
+
 function validateNewUser(name, email, password) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -92,8 +100,4 @@ function validateNewUser(name, email, password) {
   }
 
   return true;
-}
-
-export function getUserInfo(){
-  return JSON.parse(getItemInLocalStorage("currentUser"));
 }

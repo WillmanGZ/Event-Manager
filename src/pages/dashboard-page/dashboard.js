@@ -1,4 +1,4 @@
-import { getUserInfo, logOut } from "../../auth/services/auth";
+import { getUserInfo, isAdmin, logOut } from "../../auth/services/auth";
 import Alerts from "../../shared/alerts";
 import { addEvent } from "./services/events";
 
@@ -17,7 +17,7 @@ export function dashboardSetup() {
   const newEventBtn = document.getElementById("add-event");
 
   //Get user info
-  const userInfo = getUserInfo()[0];
+  const userInfo = getUserInfo();
 
   userNameText.textContent = userInfo.name || "User";
   userRoleText.textContent = userInfo.role || "Role";
@@ -53,6 +53,10 @@ export function dashboardSetup() {
     event.preventDefault();
     addNewEvent();
   });
+
+  if (!isAdmin()) {
+    addNewEventBtn.classList.toggle("hidden");
+  }
 
   //Make global those functions
   window.editEvent = editEvent;
@@ -97,7 +101,7 @@ async function renderEvents() {
             <td><p>${event.date}</p></td>
             <td>
               <div class="actions">
-                <span onclick="(editEvent('${event.id}'))">Edit</span>
+                <span onclick="(editEvent('${event.id}'))" >Edit</span>
                 <span onclick="(deleteEvent('${event.id}'))">Delete</span>
               </div>
             </td>
@@ -109,9 +113,7 @@ async function renderEvents() {
 
 async function addNewEvent() {
   const eventName = document.getElementById("event-name").value.trim();
-  const eventDescription = document
-    .getElementById("event-description")
-    .value;
+  const eventDescription = document.getElementById("event-description").value;
 
   console.log(eventDescription);
   const eventDate = document.getElementById("event-date").value;
@@ -125,9 +127,16 @@ async function addNewEvent() {
   addEvent(eventName, eventDescription, eventCapacity, eventDate);
 }
 
-async function editEvent(id) {}
+async function editEvent(id) {
+    Alerts.info("Functionallity not implemented yet")
+}
 
 async function deleteEvent(id) {
+  if (!isAdmin()) {
+    Alerts.info("You are not allowed to do that");
+    return;
+  }
+
   let request = await fetch(`${API_URL}/events/${id}`, { method: "DELETE" });
 
   if (!request.ok) {
