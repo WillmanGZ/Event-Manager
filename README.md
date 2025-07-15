@@ -1,6 +1,6 @@
 # Event System
 
-This web application allows you to manage events in two vies, like admin and like user. User can choose wich event will join, admin can edit, create and delete events.
+This web application allows you to manage events in two views, like admin and like user. User can choose wich event will join, admin can edit, create and delete events.
 
 ## Features
 
