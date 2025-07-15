@@ -22,7 +22,7 @@ This web application allows you to manage events in two vies, like admin and lik
    ```
 3. Start the JSON Server with the provided database (e.g., `database.json`):
    ```bash
-   json-server --watch public/database.json --port 3000
+   json-server --watch public/db.json --port 3000
    ```
 4. Start the Vite development server:
    ```bash
