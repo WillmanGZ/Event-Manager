@@ -40,4 +40,8 @@ You can make new credentials. Users created by register page will be visitors!
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. 
+Made by Willman Alfredo Giraldo Zambrano
+willman0520@outlook.com
+Clan Caimán
+CC: 1044611702
